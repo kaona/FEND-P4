@@ -403,48 +403,34 @@ var resizePizzas = function(size) {
   window.performance.mark("mark_start_resize");   // User Timing API function
 
   // Changes the value for the size of the pizza above the slider
+  // Iterates through pizza elements on the page and changes their widths
+  var randomPizzas = document.getElementsByClassName('randomPizzaContainer');
   function changeSliderLabel(size) {
     switch(size) {
       case "1":
         document.querySelector("#pizzaSize").innerHTML = "Small";
-        return;
+        for(var i = 0; i < randomPizzas.length; i++) {
+          randomPizzas[i].style.width = "25%";
+        }
+        break;
       case "2":
         document.querySelector("#pizzaSize").innerHTML = "Medium";
-        return;
+        for(var i = 0; i < randomPizzas.length; i++) {
+          randomPizzas[i].style.width = "33%";
+        }
+        break;
       case "3":
         document.querySelector("#pizzaSize").innerHTML = "Large";
-        return;
+        for(var i = 0; i < randomPizzas.length; i++) {
+          randomPizzas[i].style.width = "50%";
+        }
+        break;
       default:
         console.log("bug in changeSliderLabel");
     }
   }
 
   changeSliderLabel(size);
-
-  // Iterates through pizza elements on the page and changes their widths
-  function changePizzaSizes(size) {
-    switch(size) {
-      case "1":
-        newWidth = 25;
-        break;
-      case "2":
-        newWidth = 33.3;
-        break;
-      case "3":
-        newWidth = 50;
-        break;
-      default:
-        console.log("bug in sizeSwitcher");
-    }
-
-    var randomPizzas = document.getElementsByClassName(".randomPizzaContainer");
-
-    for (var i = 0; i < randomPizzas.length; i++) {
-      randomPizzas[i].style.width = newwidth + "%";
-    }
-  }
-
-  changePizzaSizes(size);
 
   // User Timing API is awesome
   window.performance.mark("mark_end_resize");
@@ -552,5 +538,7 @@ document.addEventListener('DOMContentLoaded', function() {
     elem.style.top = (Math.floor(i / cols) * s) + 'px';
     document.querySelector("#movingPizzas1").appendChild(elem);
   }
+  updatePositions();
+
 });
 
