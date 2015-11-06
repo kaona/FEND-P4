@@ -404,6 +404,8 @@ var resizePizzas = function(size) {
 
   // Changes the value for the size of the pizza above the slider
   // Iterates through pizza elements on the page and changes their widths
+  // I combined the two switch case statements since they were triggering on the same resizePizza onclick input.
+  // I defined var = randomPizzas out side the for loop so code only has to get it once.
   var randomPizzas = document.getElementsByClassName('randomPizzaContainer');
   function changeSliderLabel(size) {
     switch(size) {
@@ -520,11 +522,8 @@ function updatePositions() {
 window.addEventListener('scroll', updatePositions);
 
 
-// Generates the sliding pizzas when the page loads.
-// I removed the updatePosition() from here. The idea is it runs the first time to populate 
-// the screen. Will updatePosition() elsewhere to animate "mover".
-// getting number of pizza's created here.
-// Changed 'img' count to 20 because that is all that shows on the layer in DevTools.
+
+// Changed 'img' count to 20 because that is all that shows on the layer view in DevTools.
 document.addEventListener('DOMContentLoaded', function() {
   var cols = 8;
   var s = 256;
